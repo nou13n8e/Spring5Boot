@@ -29,10 +29,12 @@ checkok2?.addEventListener('click', ()=>{
     else if(checkfrm2.secret2.value == "") alert("주민등록번호를 입력해주세요.");
     else if(!check.checked) alert("주민등록번호 처리에 동의해주세요.");
     else {
-        let param= "?name=" + checkfrm2.name2.value;
-        param += "&secret1=" + checkfrm2.secret1.value;
-        param += "&secret2=" + checkfrm2.secret2.value;
-        location.href="/join/join" + param;
+        // let param= "?name=" + checkfrm2.name2.value;
+        // param += "&secret1=" + checkfrm2.secret1.value;
+        // param += "&secret2=" + checkfrm2.secret2.value;
+        // location.href="/join/join" + param;
+        checkfrm2.method="post";
+        checkfrm2.submit();
     }
 });
 checkno2?.addEventListener('click', ()=>{
