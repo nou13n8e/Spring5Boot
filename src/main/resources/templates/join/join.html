@@ -37,11 +37,11 @@
             <form name="joinfrm" id="joinfrm">
                 <div class="row col-11 offset-1">
                     <div class="row my-1"><label for="name" class="col-2 col-form-label text-danger text-end">이름</label>
-                        <div class="col-3"><input type="text" name="name" id="name" class="form-control border-danger bg-light" readonly></div>
+                        <div class="col-3"><input type="text" name="name" id="name" class="form-control border-danger bg-light" readonly th:value="${session.check.name2}"></div>
                     </div> <!-- name -->
                     <div class="row my-1"><label for="secret1" class="col-2 col-form-label text-danger text-end">주민등록번호</label>
-                        <div class="col-3"><input type="text" name="name" id="secret1" class="form-control border-danger bg-light" readonly></div>
-                        <div class="col-3"><input type="text" name="name" id="secret2" class="form-control border-danger bg-light" readonly></div>
+                        <div class="col-3"><input type="text" name="secret1" id="secret1" class="form-control border-danger bg-light" readonly th:value="${session.check.secret1}"></div>
+                        <div class="col-3"><input type="text" name="secret2" id="secret2" class="form-control border-danger bg-light" readonly th:value="${session.check.secret2}"></div>
                     </div> <!-- secret -->
                     <div class="row my-1"><label for="userid" class="col-2 col-form-label text-danger text-end">아이디</label>
                         <div class="col-3"><input type="text" name="userid" id="userid" class="form-control border-danger"></div>
