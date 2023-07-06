@@ -65,11 +65,15 @@
                         <div class="col-3"><input type="text" name="address2" id="address2" class="form-control border-danger"></div>
                     </div> <!-- address -->
                     <div class="row my-1 input-group"><label for="email1" class="col-2 col-form-label text-danger text-end">전자우편</label>
-                        <div class="col-5"><input type="text" name="email1" id="email1" class="form-control border-danger"></div>
-                        <div class="col-auto"></div><span class="input-group-text border-danger text-danger bg-danger bg-opacity-10">@</span></div>
-                        <div class="col-3"><input type="text" name="email2" id="email2" class="form-control border-danger"></div>
-                        <div class="col-3"><select class="form-select border-danger"><option>선택하세요.</option></select></div>
-                    </div> <!-- email -->
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input type="text" id="email1" class="form-control border-danger">
+                                <span class="input-group-text border-danger text-danger bg-danger bg-opacity-10">@</span>
+                                <input type="text" id="email2" class="form-control border-danger bg-light" readonly>
+                            </div>
+                            <div class="col-3">
+                                <select class="form-select border-danger text-danger"><option>선택하세요.</option></select></div>
+                        </div> <!-- email -->
                     <div class="row my-1"><label for="phone1" class="col-2 col-form-label text-danger text-end">전화번호</label>
                         <div class="col-2"><select id="phone1" class="form-select border-danger"><option>국번</option></select></div>
                         <div class="col-2"><input type="text" name="phone2" id="phone2" class="form-control border-danger"></div>
