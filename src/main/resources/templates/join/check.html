@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+                layout:decorate="~{layout/template}">
+    <th:block layout:fragment="content">
+        <div i="main">
+            <div>
+                <i class="fa-solid fa-right-to-bracket fa-2xl mt-5"> 회원가입</i>
+                <hr>
+            </div> <!-- title -->
+
+            <div class="">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <button type="button" disabled class="btn btn-success">이용약관</button></li>
+                    <li class="breadcrumb-item">
+                        <button type="button" disabled class="btn btn-success">실명확인</button></li>
+                    <li class="breadcrumb-item">
+                        <button type="button" disabled class="btn btn-light">정보입력</button></li>
+                    <li class="breadcrumb-item">
+                        <button type="button" disabled class="btn btn-light">가입완료</button></li>
+                </ul>
+            </div> <!-- breadcrumb -->
+
+        <div class="mt-5">
+            <h2>실명확인</h2>
+            <small class="text-muted">
+                회원으로 가입하는 방법에는 2가지 방법이 있습니다.
+                아래에서 원하는 방법을 선택해주세요. <br>
+                입력하신 정보는 가입완료 전까지 본 사이트에 저장되지 않습니다.
+            </small>
+            <hr>
+        </div> <!-- sub title -->
+
+        <div class="card card-body bg-light mx-5 mt-5">
+            <h3>회원가입</h3>
+            <form name="checkfrm1" id="checkfrm1">
+                <div class="row mt-3">
+                    <div class="col-5 offset-1">
+                        <div class="row my-2"><label for="name1" class="col-3 col-form-label text-warning text-end">이름</label>
+                            <div class="col-6"><input type="text" name="name1" id="name1" class="form-control border-warning"></div>
+                        </div> <!-- name -->
+                        <div class="row mb-2"><label for="byear" class="col-3 col-form-label text-warning text-end">생년월일</label>
+                            <div class="col-3"><select name="byear" id="byear" class="form-select border-warning">
+                                <option>년도</option>
+                                <option>2023</option>
+                                <option>2022</option>
+                                <option>2021</option>
+                                <option>2020</option>
+                            </select></div>
+                            <div class="col-3"><select name="bmonth" id="bmonth" class="form-select border-warning">
+                                <option>월</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                            </select></div>
+                            <div class="col-3"><select name="bday" id="bday" class="form-select border-warning">
+                                <option>일</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                            </select></div>
+                        </div> <!-- birth -->
+                        <div class="row"><label for="male" class="col-3 col-form-label text-warning text-end">성별</label>
+                            <div class="col-4 mt-2"><div class="form-check">
+                                <input type="radio" name="gender" id="male" value="m" class="form-check-input" checked>
+                                <label for="male" class="form-check-label text-warning">남자</label>
+                            </div></div>
+                            <div class="col-4 mt-2"><div class="form-check">
+                                <input type="radio" name="gender" id="female" value="f" class="form-check-input">
+                                <label for="male" class="form-check-label text-warning">여자</label>
+                            </div></div>
+                        </div> <!-- gender -->
+                    </div> <!-- form -->
+                    <div class="col-5">
+                        <ul>
+                            <li>주민등록번호 입력 없이 전화번호로 회원가입이 가능합니다.</li>
+                            <li>이름, 생년월일과 성별은 <span class="red">추후 변경할 수 없습니다.</span></li>
+                            <li><span class="red">휴대폰 가입인증</span>을 하셔야 공개 게시판 이용이 가능합니다.</li>
+                        </ul>
+                    </div> <!-- msg -->
+                </div> <!-- info -->
+                <hr class="w-75 mx-auto">
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="button" id="checkok1" class="btn btn-primary"><i class="fa-solid fa-check"></i> 확인</button>
+                        <button type="reset" id="checkno1" class="btn btn-danger"><i class="fa-solid fa-xmark"></i> 취소</button>
+                    </div>
+                </div> <!-- button -->
+            </form>
+        </div> <!-- normal check -->
+
+            <div class="card card-body bg-light mx-5 mt-5 mb-5">
+                <h3>실명확인 회원가입</h3>
+                <form name="checkfrm2" id="checkfrm2">
+                    <div class="row mt-3">
+                        <div class="col-5 offset-1">
+                            <div class="row my-2"><label for="name2" class="col-3 col-form-label text-warning text-end">이름</label>
+                                <div class="col-6"><input type="text" name="name2" id="name2" class="form-control border-warning"></div>
+                            </div> <!-- name -->
+                            <div class="row"><label for="secret1" class="col-3 col-form-label text-warning text-end">주민등록번호</label>
+                                <div class="col-3"><input type="text" name="secret" id="secret1" class="form-control border-warning"></div>
+                                <div class="col-1"><i class="fa-regular fa-window-minimize"></i></div>
+                                <div class="col-3"><input type="text" name="secret" id="secret2" class="form-control border-warning"></div>
+                            </div> <!-- secret -->
+                            <div class="row"><label class="col-3 col-form-label text-warning text-end">&nbsp;</label>
+                                    <div class="form-check">
+                                            <input type="checkbox" class="form-check-input border-warning">
+                                            <label class="form-check-label text-warning">주민등록번호 처리에 동의합니다.</label>
+                                    </div>
+                            </div> <!-- checkbox -->
+                        </div> <!-- form -->
+                        <div class="col-5">
+                            <ul>
+                                <li>실명확인 회원가입시 공개 게시판 이용이 가능합니다.</li>
+                                <li>타인의 주민등록번호를 임의로 사용하면 <span class="red">'주민등록법'에 의해
+                            3년 이하의 징역 또는 1천만원 이하의 벌금</span>이 부과될 수 있습니다.</li>
+                                <li>입력하신 주민등록번호는 <span class="red">별도 저장되지 않으며,
+                            신용평가기관을 통한 실명확인용</span>으로만 이용됩니다.</li>
+                                <li>개인정보보호법에 따라 <span class="red">이용 동의</span>를 받습니다.</li>
+                            </ul>
+                        </div> <!-- msg -->
+                    </div> <!-- info -->
+                    <hr class="w-75 mx-auto">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" id="checkok2" class="btn btn-primary"><i class="fa-solid fa-check"></i> 확인</button>
+                            <button type="reset" id="checkno2" class="btn btn-danger"><i class="fa-solid fa-xmark"></i> 취소</button>
+                        </div>
+                    </div> <!-- button -->
+                </form>
+            </div> <!-- secret check -->
+        </div>
+
+    </th:block>
+</html>
