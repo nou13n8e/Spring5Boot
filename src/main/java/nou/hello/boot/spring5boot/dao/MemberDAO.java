@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MemberDAO {
     int insertMember(Member m);
-    List<Member> selectMember(Member m);
+    List<Member> selectMember();
 }

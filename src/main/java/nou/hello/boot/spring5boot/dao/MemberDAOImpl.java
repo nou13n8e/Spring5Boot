@@ -30,7 +30,7 @@ public class MemberDAOImpl implements MemberDAO {
     }
 
     @Override
-    public List<Member> selectMember(Member m) {
-        return null;
+    public List<Member> selectMember() {
+        return memberMapper.selectMember();
     }
 }
