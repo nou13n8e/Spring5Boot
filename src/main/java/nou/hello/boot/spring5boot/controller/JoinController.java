@@ -7,10 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -79,6 +76,18 @@ public class JoinController {
         // 서블릿에서 제공하는 HttpServletResponse 객체를 이용하면
         // 스프링의 뷰리졸버 없이 바로 응답으로 출력할 수 있음
         // 단, 응답유형은 JSON 형식으로 함
+    }
+
+
+    // 아이디 중복 확인
+    // join/checkuid?uid=아이디
+    // join/checkuid/아이디
+    @GetMapping("/checkuid/{uid}")
+    @ResponseBody
+    // ResponseBody는 클라이언트에 뷰 없이 응답 가능
+    public void checkuid(@PathVariable String uid, HttpServletResponse res) throws IOException {
+        res.setContentType("application/json; charset=utf-8");
+        res.getWriter().print(msrv.checkuid(uid));
     }
 
     @GetMapping("/joinok")
