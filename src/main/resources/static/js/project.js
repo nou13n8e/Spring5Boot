@@ -115,7 +115,7 @@ email3?.addEventListener('click', ()=>{
 
 
 // 비밀번호 중복 확인
-let pwd=document.joinfrm.userpw1;
+let pwd=document.joinfrm.passwd;
 let repwd=document.joinfrm.userpw2;
 let pwdmsg=document.querySelector("#upwmsg");
 
@@ -145,7 +145,6 @@ const checkuid =(chkuid) => {
     }
         uidmsg.innerText=umsg;
 }
-
 userid?.addEventListener('blur', ()=>{
    if(userid.value === "") {
        uidmsg.innerText="6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다."
@@ -155,4 +154,32 @@ userid?.addEventListener('blur', ()=>{
    const url="/join/checkuid/"+userid.value;
    fetch(url).then(response=>response.text())
        .then(text=>checkuid(text));
+});
+
+
+// 회원정보 저장
+let joinok=document.querySelector("#joinok");
+let frm=document.forms.joinfrm;
+
+joinok?.addEventListener('click',()=>{
+    if(frm.userid.value === "") alert("아이디를 입력해주세요.");
+    else if(frm.passwd.value === "") alert("비밀번호를 입력해주세요.");
+    else if(frm.userpw2.value === "") alert("비밀번호 확인을 입력해주세요.");
+    else if(frm.zip1.value === "" || frm.zip2.value === "") alert("우편번호를 입력해주세요.");
+    else if(frm.email1.value === "" || frm.email2.value === "") alert("전자우편을 입력해주세요.");
+    else if(frm.addr1.value === "" || frm.addr2.value === "") alert("주소를 입력해주세요.");
+    else if(frm.phone1.value === "" || frm.phone2.value === "" || frm.phone3.value === "") alert("전화번호를 입력해주세요.");
+    else if(grecaptcha.getResponse() === "") alert("자동입력방지를 해주세요.");
+    else if(checkuid.value === "no") alert("아이디 중복 확인을 진행하세요.");
+    else {
+        frm.secret.value=frm.secret1.value+"-"+frm.secret2.value;
+        frm.zipcode.value=frm.zip1.value+"-"+frm.zip2.value;
+        frm.phone.value=frm.phone1.value+"-"+frm.phone2.value+"-"+frm.phone3.value;
+        frm.email.value=frm.email1.value+"@"+frm.email2.value;
+
+        alert("회원가입이 완료되었습니다.");
+
+        frm.method='post';
+        frm.submit();
+    }
 });
