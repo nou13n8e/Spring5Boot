@@ -61,6 +61,12 @@ public class JoinController {
         return viewPage;
     }
 
+    @GetMapping("/joinok")
+    public String joinok() {
+        logger.info("join joinok 호출!");
+        return "/join/joinok";
+    }
+
     @GetMapping("/zipcode")
     @ResponseBody
     // ResponseBody는 클라이언트에 뷰 없이 응답 가능
@@ -90,9 +96,4 @@ public class JoinController {
         res.getWriter().print(msrv.checkuid(uid));
     }
 
-    @GetMapping("/joinok")
-    public String joinok() {
-        logger.info("join joinok 호출!");
-        return "/join/joinok";
-    }
 }
