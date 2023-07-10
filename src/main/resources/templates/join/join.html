@@ -3,7 +3,7 @@
                 xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
                 layout:decorate="~{layout/template}">
     <th:block layout:fragment="content">
-        <div i="main">
+        <div id="main">
             <script src="https://www.google.com/recaptcha/api.js"></script>
             <div>
                 <i class="fa-solid fa-right-to-bracket fa-2xl mt-5"> 회원가입</i>
@@ -47,8 +47,8 @@
                         <div class="col-3"><input type="text" name="userid" id="userid" class="form-control border-danger"></div>
                         <div class="col-auto"><label id="uidmsg" class="col-form-label">6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다.</label></div>
                     </div> <!-- id -->
-                    <div class="row my-1"><label for="userpw1" class="col-2 col-form-label text-danger text-end">비밀번호</label>
-                        <div class="col-3"><input type="password" name="userpw1" id="userpw1" class="form-control border-danger"></div>
+                    <div class="row my-1"><label for="passwd" class="col-2 col-form-label text-danger text-end">비밀번호</label>
+                        <div class="col-3"><input type="password" name="passwd" id="passwd" class="form-control border-danger"></div>
                         <div class="col-auto"><label id="upwmsg" class="col-form-label">6~16 자의 영문 대소문자, 숫자와 특수문자만 사용할 수 있습니다.</label></div>
                     </div> <!-- pw -->
                     <div class="row my-1"><label for="userpw2" class="col-2 col-form-label text-danger text-end">비밀번호 확인</label>
@@ -68,9 +68,9 @@
                     <div class="row my-1 input-group"><label for="email1" class="col-2 col-form-label text-danger text-end">전자우편</label>
                         <div class="col-5">
                             <div class="input-group">
-                                <input type="text" id="email1" class="form-control border-danger">
+                                <input type="text" name="email1" id="email1" class="form-control border-danger">
                                 <span class="input-group-text border-danger text-danger bg-danger bg-opacity-10">@</span>
-                                <input type="text" id="email2" class="form-control border-danger bg-light" readonly>
+                                <input type="text" name="email2" id="email2" class="form-control border-danger bg-light" readonly>
                             </div>
                         </div>
                             <div class="col-2">
@@ -82,14 +82,14 @@
                             </div>
                     </div> <!-- email -->
                     <div class="row my-1"><label for="phone1" class="col-2 col-form-label text-danger text-end">전화번호</label>
-                        <div class="col-2"><select id="phone1" class="form-select border-danger"><option>국번</option></select></div>
+                        <div class="col-2"><select name="phone1" id="phone1" class="form-select border-danger"><option>010</option></select></div>
                         <div class="col-2"><input type="text" name="phone2" id="phone2" class="form-control border-danger"></div>
                         <div class="col-2"><input type="text" name="phone3" id="phone3" class="form-control border-danger"></div>
                     </div> <!-- phone -->
-                    <div class="row my-1"><label for="g-recaptcha" class="col-2 col-form-label text-danger text-end">자동입력방지</label>
+                    <div class="row my-1"><label for="grecaptcha" class="col-2 col-form-label text-danger text-end">자동입력방지</label>
                         <div class="col-3">
                             <div class="g-recaptcha" data-sitekey="6LfKW-EmAAAAAKhF3IDEJdB0xlPmZ06xgC0qhsiL"></div>
-                            <input type="hidden" name="g-recaptcha" id="g-recaptcha">
+                            <input type="hidden" name="grecaptcha" id="grecaptcha">
                         </div>
                     </div> <!-- phone -->
                 </div>
@@ -102,7 +102,7 @@
                 </div> <!-- button -->
 
                 <input type="hidden" name="secret" id="secret">
-                <input type="hidden" name="zip" id="zip">
+                <input type="hidden" name="zipcode" id="zipcode">
                 <input type="hidden" name="phone" id="phone">
                 <input type="hidden" name="email" id="email">
                 <input type="hidden" name="checkid" id="checkid">
