@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
         json=mapper.writeValueAsString(mdao.selectzip(dong));
         return json;
     }
+
     // 우편번호 검색
     // 조회결과 출력방법 1 : csv (쉼표로 구분)
     // 서울, 강남구, 논현동, 123번지
@@ -58,4 +59,9 @@ public class MemberServiceImpl implements MemberService {
     // 코드로 json 형태로 결과물을 만들려면 상당히 복잡함
     // ObjectMapper 라이브러리를 이용하면
     // 손쉽게 JSON 유형의 데이터를 생성할 수 있음
+
+    @Override
+    public int checkuid(String uid) {
+        return mdao.selectOneUserid(uid);
+    }
 }
