@@ -48,6 +48,8 @@ let zipmodal=document.querySelector("#zipmodal")
 let addrlist=document.querySelector("#addrlist");
 let sendzip=document.querySelector("#send");
 let modal=null;
+
+let email3=document.querySelector("#email3")
 zipbtn?.addEventListener('click', ()=>{
     while(addrlist.lastChild) {
         addrlist.removeChild(addrlist.lastChild);
@@ -80,20 +82,77 @@ fzipbtn?.addEventListener('click', ()=>{
     fetch(url).then(response=>response.text())
         .then(text=>showzipaddr(text));
 });
-
-
 sendzip?.addEventListener('click', ()=>{
-    let frm=document.forms.joinfrm1;
-    let addr=addrlist.value;    // 선택한 주소 항목
+    let frm=document.forms.joinfrm;
+    let addr=addrlist.value;
     if(addr != "") {
         let zip=addr.split(" ")[0];
-        let vaddr=`${addr.split(" ")[1]} ${addr.split(" ")[2]} ${addr.split(" ")[3]}`;
-        frm.zip1.value=zip.value("-")[0];
-        frm.zip2.value=zip.value("-")[1];
+        let addrs=addr.split(" ");
+        let vaddr=`${addrs[1]} ${addrs[2]} ${addrs[3]}`;
+        frm.zip1.value=zip.split("-")[0];
+        frm.zip2.value=zip.split("-")[1];
         frm.addr1.value=vaddr;
 
         modal.hide();
     } else {
-        alert("주소를 선택하세요.")
+        alert("주소를 선택하세요.");
     }
+});
+dong?.addEventListener('keydown', (e) => {
+   if (e.keyCode===13) e.preventDefault();
+});
+
+email3?.addEventListener('click', ()=>{
+   let frm=document.forms.joinfrm;
+   if(email3.value==="직접 입력하기") {
+        frm.email2.readOnly=false;
+        frm.email2.value="";
+   } else if(email3.value!=="선택하세요.") {
+        frm.email2.readOnly=true;
+        frm.email2.value=email3.value;
+   }
+});
+
+
+// 비밀번호 중복 확인
+let pwd=document.joinfrm.userpw1;
+let repwd=document.joinfrm.userpw2;
+let pwdmsg=document.querySelector("#upwmsg");
+
+repwd?.addEventListener('blur', ()=>{
+    pwdmsg.innerText = "비밀번호가 일치하지 않습니다.";
+    pwdmsg.className = 'col-form-label text-danger';
+    if(pwd.value === repwd.value) {
+        pwdmsg.innerText = "비밀번호가 일치합니다.";
+        pwdmsg.className = 'col-form-label text-primary';
+    }
+});
+
+
+// 아이디 중복 확인
+let userid=document.joinfrm.userid;
+let uidmsg=document.querySelector("#uidmsg");
+let checkid=document.joinfrm.checkid;
+
+const checkuid =(chkuid) => {
+    let umsg="사용할 수 없습니다."
+    uidmsg.className='col-form-label text-danger';
+    checkid.value="no";
+    if(chkuid === "0") {
+        umsg="사용할 수 있습니다."
+        uidmsg.className='col-form-label text-primary';
+        checkid.value="yes";
+    }
+        uidmsg.innerText=umsg;
+}
+
+userid?.addEventListener('blur', ()=>{
+   if(userid.value === "") {
+       uidmsg.innerText="6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다."
+       checkid.value="no";
+       return;
+   }
+   const url="/join/checkuid/"+userid.value;
+   fetch(url).then(response=>response.text())
+       .then(text=>checkuid(text));
 });
