@@ -25,8 +25,7 @@ public class MemberDAOUnitTest {
     @Test
     @DisplayName("MemberDAO insert Test")
     void insertMember() {
-        Member m=new Member(null, "", "", "", "",
-                "", "", "", "", null);
+        Member m=new Member(null, "", "", "", "", "" ,"", "", "", "", null);
         int result=mdao.insertMember(m);
         System.out.println(result);
         assertEquals(result, 1);

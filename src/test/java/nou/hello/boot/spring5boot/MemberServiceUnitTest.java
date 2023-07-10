@@ -26,8 +26,7 @@ public class MemberServiceUnitTest {
     @Test
     @DisplayName("MemberService save Test")
     void saveMember() {
-        Member m=new Member(null, "", "", "", "",
-                "", "", "", "", null);
+        Member m=new Member(null, "", "", "", "", "", "", "", "", "", null);
         boolean result=msrv.saveMember(m);
         System.out.println(result);
         assertEquals(result, true);
