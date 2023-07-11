@@ -45,8 +45,12 @@ public class JoinController {
     }
 
     @GetMapping("/join")
-    public String join() {
+    public String join(HttpSession sess) {
         logger.info("join join 호출!");
+        
+        // 세션변수가 없다면 agree로 이동
+        if(sess.getAttribute("check")==null) return "redirect:/join/agree";
+        
         return "/join/join";
     }
     @PostMapping("/join")
