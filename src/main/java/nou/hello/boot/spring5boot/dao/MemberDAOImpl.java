@@ -26,20 +26,17 @@ public class MemberDAOImpl implements MemberDAO {
     public int insertMember(Member m) {
         // sqlSession.insert(insert 관련 mapping, 매개변수)
         // memberMapper.insertMember(매개변수)로 변경
-        //return sqlSession.insert("MemberMapper.insertMember", m);
+        // return sqlSession.insert("MemberMapper.insertMember", m);
         return memberMapper.insertMember(m);
     }
-
     @Override
     public List<Member> selectMember() {
         return memberMapper.selectMember();
     }
-
     @Override
     public List<Zipcode> selectzip(String dong) {
         return memberMapper.findZipcode(dong);
     }
-
     @Override
     public int selectOneUserid(String uid) {
         return memberMapper.selectOneUserid(uid);
