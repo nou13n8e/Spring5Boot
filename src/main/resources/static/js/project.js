@@ -123,7 +123,7 @@ email3?.addEventListener('click', ()=>{
 });
 
 // 비밀번호 중복 확인
-let pwd=document.querySelector("#passwd");
+let pwd=document.querySelector("#pwd");
 let repwd=document.querySelector("#userpw2");
 let pwdmsg=document.querySelector("#upwmsg");
 
@@ -137,7 +137,7 @@ repwd?.addEventListener('blur', ()=>{
 });
 
 // 아이디 중복 확인
-let userid=document.querySelector("#userid");
+let userid=document.querySelector("#uid");
 let uidmsg=document.querySelector("#uidmsg");
 let checkid=document.querySelector("#checkid");
 
@@ -194,4 +194,22 @@ joinok?.addEventListener('click',()=>{
 let go2index=document.querySelector("#go2index");
 go2index?.addEventListener('click',()=>{
     location.href="/";
+});
+
+
+// 로그인 하기
+let loginbtn=document.querySelector("#loginbtn");
+let lgnuid=document.querySelector("#userid");
+let lgnpwd=document.querySelector("#passwd");
+let lgnfrm=document.querySelector("#lgnfrm");
+loginbtn?.addEventListener('click', ()=>{
+    if(lgnuid.value===""){
+        alert("아이디를 입력해주세요.")
+    } else if (lgnpwd.value==="") {
+        alert("비밀번호를 입력해주세요.")
+    } else {
+        lgnfrm.method="post";
+        lgnfrm.action="/join/login";
+        lgnfrm.submit();
+    }
 });
