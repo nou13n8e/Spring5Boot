@@ -1,3 +1,16 @@
 .red {
     color:red;
 }
+
+/* board */
+.tbborder {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+.tbborder tr {
+    border-bottom: silver;
+}
+
+.thbg {
+    background-color: #dff0d8;
+}
