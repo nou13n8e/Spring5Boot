@@ -32,9 +32,19 @@ public class MemberServiceUnitTest {
         assertEquals(result, true);
     }
     @Test
-    @DisplayName("MemberService read Test")
+    @DisplayName("MemberService readMember Test")
     void readMember() {
         List<Member> result=msrv.readMember();
+        System.out.println(result);
+        assertNotNull(result);
+    }
+    @Test
+    @DisplayName("MemberService readOneMember Test")
+    void readOneMember() {
+        Member m=new Member();
+        m.setUserid("abc123");
+        m.setPasswd("987xyz");
+        Member result=msrv.readOneMember(m);
         System.out.println(result);
         assertNotNull(result);
     }
