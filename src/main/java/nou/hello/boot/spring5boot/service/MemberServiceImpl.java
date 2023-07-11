@@ -15,7 +15,6 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberDAO mdao;
 
-
     @Override
     public boolean saveMember(Member m) {
         boolean isSaved=false;
@@ -36,7 +35,6 @@ public class MemberServiceImpl implements MemberService {
         json=mapper.writeValueAsString(mdao.selectzip(dong));
         return json;
     }
-
     // 우편번호 검색
     // 조회결과 출력방법 1 : csv (쉼표로 구분)
     // 서울, 강남구, 논현동, 123번지
@@ -63,5 +61,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int checkuid(String uid) {
         return mdao.selectOneUserid(uid);
+    }
+
+    @Override
+    public Member readOneMember(Member m) {
+        return mdao.selectOneMember(m);
     }
 }
