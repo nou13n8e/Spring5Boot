@@ -100,4 +100,17 @@ public class JoinController {
         res.getWriter().print(msrv.checkuid(uid));
     }
 
+    // 로그인 처리
+    @PostMapping("/login")
+    public String login(Member m, HttpSession sess) {
+        logger.info("login 호출!");
+        String returnPage="redirect:/loginfail";
+
+        m=msrv.readOneMember(m);
+        if(m != null) {
+            sess.setAttribute("member", m);
+            returnPage="redirect:/";
+        }
+        return returnPage;
+    }
 }
