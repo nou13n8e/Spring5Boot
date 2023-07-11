@@ -39,7 +39,6 @@ checkno2?.addEventListener('click', ()=>{
 });
 
 
-
 // join
 let fzipbtn=document.querySelector("#find");
 let zipbtn=document.querySelector("#zipbtn");
@@ -50,6 +49,8 @@ let sendzip=document.querySelector("#send");
 let modal=null;
 
 let email3=document.querySelector("#email3")
+
+// 우편번호 검색 모달창 띄우기
 zipbtn?.addEventListener('click', ()=>{
     while(addrlist.lastChild) {
         addrlist.removeChild(addrlist.lastChild);
@@ -64,15 +65,20 @@ zipbtn?.addEventListener('click', ()=>{
     } catch (e) { }
         modal.show();
 });
+
+// 검색한 우편번호 결과 출력하기
 const showzipaddr = (jsons) => {
     jsons=JSON.parse(jsons); //문자열을 json객체로 변환
     let addr="";
     jsons.forEach(function (data, idx) {
+       let bunji=(data['bunji'] !== null) ? data['bunji'] : '';
        addr+=`<option>${data['zipcode']} ${data['sido']} ${data['gugun']}
-                ${data['dong']} ${data['bunji']}</option>`;
+                ${data['dong']} ${bunji}</option>`;
     });
     addrlist.innerHTML=addr;
 };
+
+// 우편번호 검색하기
 fzipbtn?.addEventListener('click', ()=>{
     if(dong.value==='') {
         alert("동 이름을 입력하세요.");
@@ -82,6 +88,8 @@ fzipbtn?.addEventListener('click', ()=>{
     fetch(url).then(response=>response.text())
         .then(text=>showzipaddr(text));
 });
+
+// 주소 선택한 뒤 닫기
 sendzip?.addEventListener('click', ()=>{
     let frm=document.forms.joinfrm;
     let addr=addrlist.value;
@@ -102,6 +110,7 @@ dong?.addEventListener('keydown', (e) => {
    if (e.keyCode===13) e.preventDefault();
 });
 
+// 전자우편 주소 선택한 뒤 닫기
 email3?.addEventListener('click', ()=>{
    let frm=document.forms.joinfrm;
    if(email3.value==="직접 입력하기") {
@@ -113,10 +122,9 @@ email3?.addEventListener('click', ()=>{
    }
 });
 
-
 // 비밀번호 중복 확인
-let pwd=document.joinfrm.passwd;
-let repwd=document.joinfrm.userpw2;
+let pwd=document.querySelector("#passwd");
+let repwd=document.querySelector("#userpw2");
 let pwdmsg=document.querySelector("#upwmsg");
 
 repwd?.addEventListener('blur', ()=>{
@@ -128,11 +136,10 @@ repwd?.addEventListener('blur', ()=>{
     }
 });
 
-
 // 아이디 중복 확인
-let userid=document.joinfrm.userid;
+let userid=document.querySelector("#userid");
 let uidmsg=document.querySelector("#uidmsg");
-let checkid=document.joinfrm.checkid;
+let checkid=document.querySelector("#checkid");
 
 const checkuid =(chkuid) => {
     let umsg="사용할 수 없습니다."
@@ -155,7 +162,6 @@ userid?.addEventListener('blur', ()=>{
    fetch(url).then(response=>response.text())
        .then(text=>checkuid(text));
 });
-
 
 // 회원정보 저장
 let joinok=document.querySelector("#joinok");
@@ -182,4 +188,10 @@ joinok?.addEventListener('click',()=>{
         frm.method='post';
         frm.submit();
     }
+});
+
+// 메인으로 이동
+let go2index=document.querySelector("#go2index");
+go2index?.addEventListener('click',()=>{
+    location.href="/";
 });
