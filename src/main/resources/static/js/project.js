@@ -196,6 +196,17 @@ go2index?.addEventListener('click',()=>{
     location.href="/";
 });
 
+// 프로젝트 소개로 이동하기 startbtn
+let startbtn=document.querySelector("#startbtn");
+startbtn?.addEventListener('click', ()=>{
+   location.href="/intro"
+});
+
+// 회원가입으로 이동하기 joinbtn
+let joinbtn=document.querySelector("#joinbtn");
+joinbtn?.addEventListener('click', ()=> {
+   location.href="/join/agree"
+});
 
 // 로그인 하기
 let loginbtn=document.querySelector("#loginbtn");
