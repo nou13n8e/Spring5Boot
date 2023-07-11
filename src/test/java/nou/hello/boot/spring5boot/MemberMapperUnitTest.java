@@ -29,9 +29,19 @@ public class MemberMapperUnitTest {
     }
 
     @Test
-    @DisplayName("MemberMapper select Test")
+    @DisplayName("MemberMapper selectMember Test")
     void selectMember() {
         List<Member> result=memberMapper.selectMember();
+        System.out.println(result);
+        assertNotNull(result);
+    }
+    @Test
+    @DisplayName("MemberMapper selectOneMember Test")
+    void selectOneMember() {
+        Member m=new Member();
+        m.setUserid("abc123");
+        m.setPasswd("987xyz");
+        Member result=memberMapper.selectOneMember(m);
         System.out.println(result);
         assertNotNull(result);
     }
