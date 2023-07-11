@@ -35,7 +35,6 @@ public class MemberDAOUnitTest {
     void selectMember() {
         List<Member> result=mdao.selectMember();
     }
-
     @Test
     @DisplayName("MemberDAO checkUserid Test")
     void checkUserid() {
@@ -44,5 +43,15 @@ public class MemberDAOUnitTest {
 
         System.out.println(result);
         assertEquals(result, 1);
+    }
+    @Test
+    @DisplayName("MemberDAO selectOneMember Test")
+    void selectOneMember() {
+        Member m=new Member();
+        m.setUserid("abc123");
+        m.setPasswd("987xyz");
+        Member result=mdao.selectOneMember(m);
+        System.out.println(result);
+        assertNotNull(result);
     }
 }
