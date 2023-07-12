@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+                layout:decorate="~{layout/template}">
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/css/project.css"/>
+</head>
+<th:block layout:fragment="content">
+        <div i="main">
+            <div>
+                <i class="fa-solid fa-pen-to-square fa-2xl mt-5"> 게시판</i>
+                <hr>
+            </div>
+
+            <div class="row mt-5 mb-3">
+                <div class="row col-5 offset-1">
+                    <button type="button" class="btn btn-light col-3"><i class="fa-solid fa-chevron-left"></i> 이전 게시글</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-light col-3">다음 게시글 <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="col-5 text-end">
+                    <button id="newbdbtn" type="button" class="btn btn-light col-3"><i class="fa-solid fa-pencil"></i> 글쓰기</button>
+                </div>
+            </div> <!-- 이전, 다음 페이지 및 글쓰기-->
+
+            <div class="row col-10 offset-1">
+                <table>
+                    <tr><th class="vtit" colspan="2" th:text="${view.title}">제목</th></tr>
+                    <tr class="vinfo"><td th:text="${view.userid}">글쓴이</td>
+                        <td class="text-end" th:text="|${view.regdate} / ${view.thumbs} / ${view.views}|">작성일/추천/조회</td>
+                    </tr>
+                    <tr><td class="vcont" colspan="2" th:text="${view.contents}">본문보기</td></tr>
+                </table>
+            </div> <!-- 본문보기 -->
+
+
+            <div class="row mt-3 mb-5">
+                <div class="row col-5 offset-1">
+                    <button id="modbdbtn" type="button" class="btn btn-warning col-3"><i class="fa-solid fa-question"></i> 수정하기</button>
+                    &nbsp;
+                    <button id="rmvbdbtn" type="button" class="btn btn-danger col-3"><i class="fa-solid fa-x"></i> 삭제하기</button>
+                </div>
+                <div class="col-5 text-end">
+                    <button id="lstbdbtn" type="button" class="btn btn-light col-3"><i class="fa-solid fa-list-ul"></i> 목록으로</button>
+                </div>
+            </div> <!-- 수정, 삭제하기 및 목록으로-->
+        </div>
+    </th:block>
+</html>
