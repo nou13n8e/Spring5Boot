@@ -11,6 +11,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -49,5 +50,14 @@ public class BoardServiceUnitTest {
         Board result=bsrv.readOneBoard(bno);
         System.out.println(result);
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardService removeOneBoard Test")
+    @Transactional
+    void removeOneBoard() {
+        String bno="1088";
+        boolean result=bsrv.removeOneBoard(bno);
+        assertEquals(result, true);
     }
 }

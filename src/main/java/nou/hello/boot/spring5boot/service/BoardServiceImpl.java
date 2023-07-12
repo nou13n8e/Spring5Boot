@@ -30,4 +30,11 @@ public class BoardServiceImpl implements BoardService {
     public Board readOneBoard(String bno) {
         return bdao.selectOneBoard(bno);
     }
+
+    @Override
+    public boolean removeOneBoard(String bno) {
+        boolean isRemoved=false;
+        if(bdao.deleteOneBoard(bno) > 0) isRemoved=true;
+        return isRemoved;
+    }
 }

@@ -8,5 +8,5 @@ public interface BoardService {
     boolean saveBoard(Board b);
     List<Board> readBoard(Integer cpg);
     Board readOneBoard(String bno);
-
+    boolean removeOneBoard(String bno);
 }
