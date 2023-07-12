@@ -9,7 +9,7 @@
                 <hr>
             </div>
 
-            <div class="row">
+            <div class="row mb-2">
                 <div class="row offset-1 col-7">
                     <div class="col-2">
                         <select class="form-select" id="findtype">
@@ -51,16 +51,18 @@
                                     안녕하세요. 현재 시각은 오후 2시 50분, 비가 오고 있습니다.</th>
                                 <th>운영자</th>
                                 <th>2023-07-11</th>
-                                <th>548</th>
-                                <th>4546</th>
+                                <th>54</th>
+                                <th>454</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>빌드가 731ms에서 성공적으로 완료되었습니다! (1분 전)</td>
-                                <td>운영자</td>
-                                <td>2023-07-11</td>
-                                <td>548</td>
-                                <td>4546</td>
+
+                            <tr th:each="board : ${board}">
+                                <!--컨트롤러에서 넘어오는 값은 ${}안에 들어있으므로 반복문 사용해서 목록 구현-->
+                                <td th:text="${board.bno}">1</td>
+                                <td th:text="${board.title}">빌드가 731ms에서 성공적으로 완료되었습니다! (1분 전)</td>
+                                <td th:text="${board.userid}">운영자</td>
+                                <td th:text="${#strings.substring(board.regdate, 0, 10)}">2023-07-11</td>
+                                <td th:text="${board.thumbs}">548</td>
+                                <td th:text="${board.views}">4546</td>
                             </tr>
                         </tbody>
                     </table>
