@@ -29,8 +29,8 @@ public class BoardControllerUnitTest {
     void readBoard() throws Exception {
         mvc.perform(post("/board/list")
                 .param("cpg", "1"))
-                .andExpect(status().is4xxClientError())
-                .andReturn();
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 
 }
