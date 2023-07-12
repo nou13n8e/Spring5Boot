@@ -58,7 +58,7 @@
                             <tr th:each="board : ${board}">
                                 <!--컨트롤러에서 넘어오는 값은 ${}안에 들어있으므로 반복문 사용해서 목록 구현-->
                                 <td th:text="${board.bno}">1</td>
-                                <td th:text="${board.title}">빌드가 731ms에서 성공적으로 완료되었습니다! (1분 전)</td>
+                                <td><a th:href="|/board/view/${board.bno}|" th:text="${board.title}">빌드가 731ms에서 성공적으로 완료되었습니다! (1분 전)</a></td>
                                 <td th:text="${board.userid}">운영자</td>
                                 <td th:text="${#strings.substring(board.regdate, 0, 10)}">2023-07-11</td>
                                 <td th:text="${board.thumbs}">548</td>
