@@ -20,7 +20,7 @@ public class BoardController {
 
     Logger logger= LogManager.getLogger(IndexController.class);
     @GetMapping("/list")
-    public String list(Model m, int cpg) {
+    public String list(Model m, Integer cpg) {
         logger.info("board list 호출!");
         m.addAttribute("board", bsrv.readBoard(cpg));
         return "/board/list";
