@@ -1,9 +1,8 @@
-package nou.hello.boot.spring5boot;
+package nou.hello.boot.spring5boot.member;
 
+import nou.hello.boot.spring5boot.dao.MemberDAO;
 import nou.hello.boot.spring5boot.dao.MemberDAOImpl;
 import nou.hello.boot.spring5boot.model.Member;
-import nou.hello.boot.spring5boot.service.MemberService;
-import nou.hello.boot.spring5boot.service.MemberServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -18,33 +17,40 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({MemberServiceImpl.class, MemberDAOImpl.class})
-public class MemberServiceUnitTest {
+@Import(MemberDAOImpl.class)
+public class MemberDAOUnitTest {
     @Autowired
-    private MemberService msrv;
+    private MemberDAO mdao;
 
     @Test
-    @DisplayName("MemberService save Test")
-    void saveMember() {
-        Member m=new Member(null, "", "", "", "", "", "", "", "", "", null);
-        boolean result=msrv.saveMember(m);
+    @DisplayName("MemberDAO insert Test")
+    void insertMember() {
+        Member m=new Member(null, "", "", "", "", "" ,"", "", "", "", null);
+        int result=mdao.insertMember(m);
         System.out.println(result);
-        assertEquals(result, true);
+        assertEquals(result, 1);
     }
     @Test
-    @DisplayName("MemberService readMember Test")
-    void readMember() {
-        List<Member> result=msrv.readMember();
-        System.out.println(result);
-        assertNotNull(result);
+    @DisplayName("MemberDAO select Test")
+    void selectMember() {
+        List<Member> result=mdao.selectMember();
     }
     @Test
-    @DisplayName("MemberService readOneMember Test")
-    void readOneMember() {
+    @DisplayName("MemberDAO checkUserid Test")
+    void checkUserid() {
+        String uid="abc123";
+        int result=mdao.selectOneUserid(uid);
+
+        System.out.println(result);
+        assertEquals(result, 1);
+    }
+    @Test
+    @DisplayName("MemberDAO selectOneMember Test")
+    void selectOneMember() {
         Member m=new Member();
         m.setUserid("abc123");
         m.setPasswd("987xyz");
-        Member result=msrv.readOneMember(m);
+        Member result=mdao.selectOneMember(m);
         System.out.println(result);
         assertNotNull(result);
     }

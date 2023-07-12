@@ -1,4 +1,4 @@
-package nou.hello.boot.spring5boot;
+package nou.hello.boot.spring5boot.member;
 
 import nou.hello.boot.spring5boot.model.Member;
 import nou.hello.boot.spring5boot.mybatis.MemberMapper;
