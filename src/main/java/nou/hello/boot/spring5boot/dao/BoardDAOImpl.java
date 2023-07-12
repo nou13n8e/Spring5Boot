@@ -29,4 +29,9 @@ public class BoardDAOImpl implements BoardDAO {
     public Board selectOneBoard(String bno) {
         return boardMapper.selectOneBoard(bno);
     }
+
+    @Override
+    public int deleteOneBoard(String bno) {
+        return boardMapper.deleteOneBoard(bno);
+    }
 }

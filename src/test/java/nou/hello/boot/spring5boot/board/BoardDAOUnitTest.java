@@ -9,6 +9,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -48,5 +49,14 @@ public class BoardDAOUnitTest {
         Board result=bdao.selectOneBoard(bno);
         System.out.println(result);
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardDAO deleteOneBoard Test")
+    @Transactional
+    void deleteOneBoard(){
+        String bno="1088";
+        int result=bdao.deleteOneBoard(bno);
+        assertEquals(result, 1);
     }
 }
