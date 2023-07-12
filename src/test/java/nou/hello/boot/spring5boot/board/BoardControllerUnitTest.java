@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -24,7 +25,7 @@ public class BoardControllerUnitTest {
     private MockMvc mvc;
 
     @Test
-    @DisplayName("BoardController save Test")
+    @DisplayName("BoardController read Test")
     @Transactional
     void readBoard() throws Exception {
         mvc.perform(get("/board/list")
@@ -34,11 +35,24 @@ public class BoardControllerUnitTest {
     }
 
     @Test
-    @DisplayName("BoardController save Test")
+    @DisplayName("BoardController view Test")
     @Transactional
     void view() throws Exception {
         mvc.perform(get("/board/view/300"))
                 .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("BoardController save Test")
+    @Transactional
+    void write() throws Exception {
+        mvc.perform(post("/board/write")
+                .param("title", "abc123")
+                .param("userid", "abc123")
+                .param("contents","abc123")
+                .param("ipaddr", "127.0.0.1"))
+                .andExpect(status().is3xxRedirection())
                 .andDo(print());
     }
 }
