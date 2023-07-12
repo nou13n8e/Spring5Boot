@@ -32,7 +32,8 @@ public class BoardMapperUnitTest {
     @Test
     @DisplayName("BoardMapper selectBoard Test")
     void selectBoard() {
-        int stnum=1;
+        int cpg=1;
+        int stnum=(cpg-1)*25;
         List<Board> results=boardMapper.selectBoard(stnum);
         System.out.println(results);
         assertNotNull(results);
