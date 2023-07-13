@@ -72,4 +72,19 @@ public class BoardController {
         }
         return viewPage;
     }
+    @GetMapping("/find/{cpg}/{findtype}/{findkey}")
+    public String find(Model m, @PathVariable Integer cpg,
+                       @PathVariable String findtype, @PathVariable String findkey) {
+        logger.info("board find 호출!");
+        m.addAttribute("board", bsrv.findBoard(cpg, findtype, findkey));
+        m.addAttribute("cpg", cpg);
+        m.addAttribute("cntpg", bsrv.countAllBoard());
+        m.addAttribute("stpg", ((cpg-1)/10)*10+1);
+
+        // 만약 cpg가 cntpg보다 크다면 첫 페이지로 강제 이동하게 설정
+        if(cpg > (int)m.getAttribute("cntpg")) {
+            return "redirect:/board/list/1";
+        }
+        return "/board/list";
+    }
 }
