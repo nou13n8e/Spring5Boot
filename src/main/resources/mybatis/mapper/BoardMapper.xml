@@ -25,4 +25,8 @@
     <update id="viewsUp">
         update board2 set views=views+1 where bno=${bno}
     </update>
+
+    <select id="countAllBoard">
+        select ceil(count(*) / 25) cnt from board2
+    </select>
 </mapper>

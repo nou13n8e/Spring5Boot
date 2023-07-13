@@ -14,4 +14,5 @@ public interface BoardMapper {
     Board selectOneBoard(String bno);
     int deleteOneBoard(String bno);
     int viewsUp(String bno);
+    int countAllBoard();
 }
