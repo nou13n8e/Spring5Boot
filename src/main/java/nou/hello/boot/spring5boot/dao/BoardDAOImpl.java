@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -39,6 +40,11 @@ public class BoardDAOImpl implements BoardDAO {
     @Override
     public int countAllBoard() {
         return boardMapper.countAllBoard();
+    }
+
+    @Override
+    public List<Board> findBoard(Map<String, Object> params) {
+        return boardMapper.findBoard(params);
     }
 
 }
