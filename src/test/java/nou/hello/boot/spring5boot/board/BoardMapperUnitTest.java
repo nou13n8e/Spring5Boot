@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLOutput;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -74,5 +75,16 @@ public class BoardMapperUnitTest {
     void count() {
         int result=boardMapper.countAllBoard();
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardMapper find Test")
+    void find() {
+        Map<String, Object> params = new HashMap<>();
+            params.put("findtype", "titcont");
+            params.put("findkey", "비가");
+            params.put("stnum", 0);
+        List<Board> results=boardMapper.findBoard(params);
+        assertNotNull(results);
     }
 }
