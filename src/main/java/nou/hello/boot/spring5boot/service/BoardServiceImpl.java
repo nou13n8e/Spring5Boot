@@ -5,7 +5,9 @@ import nou.hello.boot.spring5boot.model.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("bsrv")
 public class BoardServiceImpl implements BoardService {
@@ -41,5 +43,14 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int countAllBoard() {
         return bdao.countAllBoard();
+    }
+
+    @Override
+    public List<Board> findBoard(Integer cpg, String findtype, String findkey) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("findtype", findtype);
+        params.put("findkey", findkey);
+        params.put("stnum", (cpg-1) * 25);
+        return bdao.findBoard(params);
     }
 }
