@@ -246,9 +246,11 @@ modbdbtn?.addEventListener('click', ()=>{
         alert("지원되지 않는 기능입니다.")
     }
 });
+
+let remove=document.querySelector("#remove");
 rmvbdbtn?.addEventListener('click', ()=>{
     if(confirm("글을 삭제하시겠습니까?")) {
-        location.href="/board/list/1"
+        location.href="/board/delete/"+remove.value
     }
 });
 lstbdbtn?.addEventListener('click', ()=>{

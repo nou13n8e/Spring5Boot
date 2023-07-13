@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/project.css"/>
 </head>
 <th:block layout:fragment="content">
-        <div i="main">
+        <div id="main">
             <div>
                 <i class="fa-solid fa-pen-to-square fa-2xl mt-5"> 게시판</i>
                 <hr>
@@ -30,6 +30,7 @@
                         <td class="text-end" th:text="|${view.regdate} / ${view.thumbs} / ${view.views}|">작성일/추천/조회</td>
                     </tr>
                     <tr><td class="vcont" colspan="2" th:text="${view.contents}">본문보기</td></tr>
+                    <input type="hidden" id="remove" th:value="${view.bno}">
                 </table>
             </div> <!-- 본문보기 -->
 
