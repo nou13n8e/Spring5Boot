@@ -30,6 +30,11 @@ public class BoardController {
         m.addAttribute("cpg", cpg);
         m.addAttribute("cntpg", bsrv.countAllBoard());
         m.addAttribute("stpg", ((cpg-1)/10)*10+1);
+
+        // 만약 cpg가 cntpg보다 크다면 첫 페이지로 강제 이동하게 설정
+        if(cpg > (int)m.getAttribute("cntpg")) {
+            return "redirect:/board/list/1";
+        }
         return "/board/list";
     }
 
