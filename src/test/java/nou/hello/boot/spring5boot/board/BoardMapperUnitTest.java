@@ -68,4 +68,11 @@ public class BoardMapperUnitTest {
         int result=boardMapper.viewsUp(bno);
         assertEquals(result, 1);
     }
+
+    @Test
+    @DisplayName("BoardMapper count Test")
+    void count() {
+        int result=boardMapper.countAllBoard();
+        assertNotNull(result);
+    }
 }
