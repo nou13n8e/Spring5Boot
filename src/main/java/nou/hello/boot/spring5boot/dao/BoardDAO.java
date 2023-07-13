@@ -9,4 +9,5 @@ public interface BoardDAO {
     List<Board> selectBoard(int stnum);
     Board selectOneBoard(String bno);
     int deleteOneBoard(String bno);
+    int countAllBoard();
 }

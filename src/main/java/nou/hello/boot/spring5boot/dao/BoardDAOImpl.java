@@ -36,4 +36,9 @@ public class BoardDAOImpl implements BoardDAO {
         return boardMapper.deleteOneBoard(bno);
     }
 
+    @Override
+    public int countAllBoard() {
+        return boardMapper.countAllBoard();
+    }
+
 }
