@@ -6,7 +6,7 @@
 <mapper namespace="nou.hello.boot.spring5boot.mybatis.BoardMapper">
     <insert id="insertBoard" parameterType="Board">
         insert into board2 (title, userid, contents, ipaddr)
-        values (#{title}, #{userid}, #{contents}, #{ipaddr});
+        values (#{title}, #{userid}, #{contents}, #{ipaddr})
     </insert>
 
     <select id="selectBoard" resultType="Board">
@@ -29,4 +29,5 @@
     <select id="countAllBoard">
         select ceil(count(*) / 25) cnt from board2
     </select>
+
 </mapper>
