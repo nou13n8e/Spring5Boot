@@ -6,6 +6,8 @@ import nou.hello.boot.spring5boot.model.Zipcode;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Mapper
 public interface BoardMapper {
@@ -15,4 +17,6 @@ public interface BoardMapper {
     int deleteOneBoard(String bno);
     int viewsUp(String bno);
     int countAllBoard();
+
+    List<Board> findBoard(Map<String, Object> params);
 }
