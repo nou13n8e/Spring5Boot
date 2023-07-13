@@ -63,4 +63,12 @@ public class BoardControllerUnitTest {
                 .andExpect(status().is3xxRedirection())
                 .andDo(print());
     }
+    @Test
+    @DisplayName("BoardController find Test")
+    @Transactional
+    void findBoard() throws Exception {
+        mvc.perform(get("/board/find/1/title/비가"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 }
