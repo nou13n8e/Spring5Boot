@@ -9,4 +9,5 @@ public interface BoardService {
     List<Board> readBoard(Integer cpg);
     Board readOneBoard(String bno);
     boolean removeOneBoard(String bno);
+    int countAllBoard();
 }

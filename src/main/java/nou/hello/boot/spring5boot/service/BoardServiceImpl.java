@@ -37,4 +37,9 @@ public class BoardServiceImpl implements BoardService {
         if(bdao.deleteOneBoard(bno) > 0) isRemoved=true;
         return isRemoved;
     }
+
+    @Override
+    public int countAllBoard() {
+        return bdao.countAllBoard();
+    }
 }
