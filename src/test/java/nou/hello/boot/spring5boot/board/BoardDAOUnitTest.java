@@ -59,4 +59,11 @@ public class BoardDAOUnitTest {
         int result=bdao.deleteOneBoard(bno);
         assertEquals(result, 1);
     }
+
+    @Test
+    @DisplayName("BoardDAO countAllBoard Test")
+    void countAllBoard() {
+        int result=bdao.countAllBoard();
+        assertNotNull(result);
+    }
 }
