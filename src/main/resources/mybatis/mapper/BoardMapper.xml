@@ -17,4 +17,12 @@
     <select id="selectOneBoard" resultType="Board">
         select * from board2 where bno = #{bno}
     </select>
+
+    <delete id="deleteOneBoard">
+        delete from board2 where bno=#{bno}
+    </delete>
+
+    <update id="viewsUp">
+        update board2 set views=views+1 where bno=${bno}
+    </update>
 </mapper>

@@ -12,4 +12,6 @@ public interface BoardMapper {
     int insertBoard(Board b);
     List<Board> selectBoard(int stnum);
     Board selectOneBoard(String bno);
+    int deleteOneBoard(String bno);
+    int viewsUp(String bno);
 }
