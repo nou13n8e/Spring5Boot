@@ -13,7 +13,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -66,5 +68,15 @@ public class BoardServiceUnitTest {
     void countAllBoard() {
         int result=bsrv.countAllBoard();
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardService find Test")
+    void find() {
+        int cpg=1;
+        String findtype="title";
+        String findkey="비가";
+        List<Board> results=bsrv.findBoard(cpg, findtype, findkey);
+        assertNotNull(results);
     }
 }
