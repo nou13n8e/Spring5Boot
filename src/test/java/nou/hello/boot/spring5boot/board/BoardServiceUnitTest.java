@@ -60,4 +60,11 @@ public class BoardServiceUnitTest {
         boolean result=bsrv.removeOneBoard(bno);
         assertEquals(result, true);
     }
+
+    @Test
+    @DisplayName("BoardService countAllBoard Test")
+    void countAllBoard() {
+        int result=bsrv.countAllBoard();
+        assertNotNull(result);
+    }
 }
