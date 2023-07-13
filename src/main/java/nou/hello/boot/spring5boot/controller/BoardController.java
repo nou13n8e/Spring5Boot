@@ -21,12 +21,14 @@ public class BoardController {
     @Autowired
     final BoardService bsrv;
 
-    Logger logger= LogManager.getLogger(IndexController.class);
+    Logger logger = LogManager.getLogger(IndexController.class);
+
     @GetMapping("/list/{cpg}")
     public String list(Model m, @PathVariable Integer cpg) {
         logger.info("board list 호출!");
         m.addAttribute("board", bsrv.readBoard(cpg));
         m.addAttribute("cpg", cpg);
+        m.addAttribute("cntpg", bsrv.countAllBoard());
         return "/board/list";
     }
 
@@ -43,13 +45,24 @@ public class BoardController {
         logger.info("board write 호출!");
         return "/board/write";
     }
-    @PostMapping( "/write")
+
+    @PostMapping("/write")
     public String writeok(Board b) {
         logger.info("board write 호출!");
-        String viewPage="redirect:/board/fail";
+        String viewPage = "redirect:/board/fail";
 
-        if(bsrv.saveBoard(b)) {
-            viewPage="redirect:/board/list/1";
+        if (bsrv.saveBoard(b)) {
+            viewPage = "redirect:/board/list/1";
+        }
+        return viewPage;
+    }
+
+    @GetMapping("/delete/{bno}")
+    public String remove(@PathVariable String bno) {
+        logger.info("board remove 호출!");
+        String viewPage = "redirect:/board/fail";
+        if (bsrv.removeOneBoard(bno)) {
+            viewPage = "redirect:/board/list/1";
         }
         return viewPage;
     }
