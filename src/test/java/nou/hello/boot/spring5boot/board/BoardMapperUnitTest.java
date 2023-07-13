@@ -59,4 +59,13 @@ public class BoardMapperUnitTest {
         System.out.println(result);
         assertEquals(result, 1);
     }
+
+    @Test
+    @DisplayName("BoardMapper viewsUp Test")
+    @Transactional
+    void viewsUp() {
+        String bno="1088";
+        int result=boardMapper.viewsUp(bno);
+        assertEquals(result, 1);
+    }
 }
