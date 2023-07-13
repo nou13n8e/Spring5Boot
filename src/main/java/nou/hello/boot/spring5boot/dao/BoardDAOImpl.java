@@ -27,6 +27,7 @@ public class BoardDAOImpl implements BoardDAO {
 
     @Override
     public Board selectOneBoard(String bno) {
+        boardMapper.viewsUp(bno);
         return boardMapper.selectOneBoard(bno);
     }
 
@@ -34,4 +35,5 @@ public class BoardDAOImpl implements BoardDAO {
     public int deleteOneBoard(String bno) {
         return boardMapper.deleteOneBoard(bno);
     }
+
 }
