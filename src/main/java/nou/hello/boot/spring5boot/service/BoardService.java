@@ -12,4 +12,5 @@ public interface BoardService {
     boolean removeOneBoard(String bno);
     int countAllBoard();
     List<Board> findBoard(Integer cpg, String findtype, String findkey);
+    int countFindBoard(String findtype, String findkey);
 }
