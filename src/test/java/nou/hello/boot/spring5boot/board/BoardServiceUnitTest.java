@@ -79,4 +79,13 @@ public class BoardServiceUnitTest {
         List<Board> results=bsrv.findBoard(cpg, findtype, findkey);
         assertNotNull(results);
     }
+
+    @Test
+    @DisplayName("BoardService count-find Test")
+    void countFindBoard() {
+        String findtype="title";
+        String findkey="비가";
+        int result=bsrv.countFindBoard(findtype, findkey);
+        assertNotNull(result);
+    }
 }
