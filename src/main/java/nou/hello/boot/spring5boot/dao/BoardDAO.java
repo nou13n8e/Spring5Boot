@@ -12,4 +12,5 @@ public interface BoardDAO {
     int deleteOneBoard(String bno);
     int countAllBoard();
     List<Board> findBoard(Map<String, Object> params);
+    int countFindBoard(Map<String, Object> params);
 }
