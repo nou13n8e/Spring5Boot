@@ -17,6 +17,6 @@ public interface BoardMapper {
     int deleteOneBoard(String bno);
     int viewsUp(String bno);
     int countAllBoard();
-
     List<Board> findBoard(Map<String, Object> params);
+    int countFindBoard(Map<String, Object> params);
 }
