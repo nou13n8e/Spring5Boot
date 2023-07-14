@@ -11,10 +11,15 @@
 
     <select id="lastPdsPno">
         <!-- pno를 알아내기 위해 인포메이션 스키마 사용
-        select AUTO_INCREMENT - 1 pno from information_schema.TABLES where TABLE_NAME = 'pds'; -->
+        select AUTO_INCREMENT - 1 pno from information_schema.TABLES where TABLE_NAME = 'pds' -->
 
-        select last_insert_id() from pds
+        select last_insert_id() from pds limit 1, 1
     </select>
+
+    <insert id="insertPdsAttach" parameterType="PdsAttach">
+        insert into pdsattach (pno, fname, ftype, fsize)
+        values (#{pno}, #{fname}, #{ftype}, #{fsize})
+    </insert>
 
 
 
