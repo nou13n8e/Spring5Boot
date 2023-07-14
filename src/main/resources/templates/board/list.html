@@ -3,7 +3,7 @@
                 xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
                 layout:decorate="~{layout/template}">
     <th:block layout:fragment="content">
-        <div id="main" th:with="pglink='/board/list/'">
+        <div id="main" th:with="pglink=${(#strings.isEmpty(findkey)) ? '/board/list/' : '/board/find/'+findtype+'/'+findkey+'/'}">
             <div>
                 <i class="fa-solid fa-pen-to-square fa-2xl mt-5"> 게시판</i>
                 <hr>
@@ -14,7 +14,7 @@
                     <div class="col-3">
                         <select class="form-select" id="findtype">
                             <option value="title">제목</option>
-                            <option value="name">글쓴이</option>
+                            <option value="userid">글쓴이</option>
                             <option value="contents">내용</option>
                             <option value="titcont">제목+내용</option>
                         </select>
