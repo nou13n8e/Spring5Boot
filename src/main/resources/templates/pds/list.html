@@ -3,11 +3,100 @@
                 xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
                 layout:decorate="~{layout/template}">
     <th:block layout:fragment="content">
-        <div i="main">
+        <div id="main" th:with="pglink=${(#strings.isEmpty(findkey)) ? '/pds/list/' : '/pds/find/'+findtype+'/'+findkey+'/'}">
             <div>
                 <i class="fa-solid fa-download fa-2xl mt-5"> 자료실</i>
                 <hr>
             </div>
+
+            <div class="row mt-5 mb-3">
+                <div class="row offset-1 col-7">
+                    <div class="col-3">
+                        <select class="form-select" id="findtype">
+                            <option value="title">제목</option>
+                            <option value="userid">글쓴이</option>
+                            <option value="contents">내용</option>
+                            <option value="titcont">제목+내용</option>
+                        </select>
+                    </div> <!-- 검색키 -->
+                    <div class="col-4">
+                        <input type="text" class="form-control col-2" id="findkey">
+                    </div> <!-- 검색창 -->
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light" id="findbtn"><i class="fa-solid fa-magnifying-glass"></i> 검색하기</button>
+                    </div> <!-- 버튼 -->
+                </div>
+                <div class="col-3 text-end">
+                    <button type="button" class="btn btn-light" id="newpdsbtn"><i class="fa-solid fa-pencil"></i> 글쓰기</button>
+                </div>
+            </div> <!-- 검색 및 글쓰기 -->
+            <div class="row">
+                <div class="offset-1 col-10">
+                    <table class="table table-striped tbborder">
+                        <thead class="thbg">
+                            <tr>
+                                <th style="width:7%">번호</th>
+                                <th>제목</th>
+                                <th style="width:13%">글쓴이</th>
+                                <th style="width:13%">작성일</th>
+                                <th style="width:7%">추천</th>
+                                <th style="width:7%">조회</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>공지</th>
+                                <th><span class="badge text-bg-danger">HOT!</span>
+                                    안녕하세요. 현재 시각은 오후 2시 50분, 비가 오고 있습니다.</th>
+                                <th>운영자</th>
+                                <th>2023-07-11</th>
+                                <th>54</th>
+                                <th>454</th>
+                            </tr>
+
+                            <tr th:each="p : ${pds}">
+                                <!--컨트롤러에서 넘어오는 값은 ${}안에 들어있으므로 반복문 사용해서 목록 구현-->
+                                <td th:text="${p.pno}">1</td>
+                                <td><a th:href="|/pds/view/${p.pno}|" th:text="${p.title}">빌드가 731ms에서 성공적으로 완료되었습니다! (1분 전)</a></td>
+                                <td th:text="${p.userid}">운영자</td>
+                                <td th:text="${#strings.substring(p.regdate, 0, 10)}">2023-07-11</td>
+                                <td th:text="${p.thumbs}">548</td>
+                                <td th:text="${p.views}">4546</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- 게시판 목록 -->
+            <div class="row mt-3 mb-5">
+                <div class="offset-1 col-10">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            <!-- cpg가 1일 때는 처음 버튼이 보이지 않게 설정-->
+                            <th:block th:if="${cpg gt 1}">
+                                <li class="page-item"><a th:href="|${pglink}1|" class="page-link">처음</a></li>
+                            </th:block>
+                            <!-- cpg가 1일 때는 이전 버튼이 활성화 되지 않게 설정-->
+                            <li th:class="${(cpg - 1 gt 0) ? 'page-item' : 'page-item disabled'}"><a th:href="|${pglink}${cpg-1}|" class="page-link">이전</a></li>
+
+                            <th:block th:each="i : ${#numbers.sequence(stpg, stpg+9)}">
+                                <!-- 출력하려는 페이지(i)가 총페이지(cntpg)와 작거나 같으면 더 이상 페이지를 만들지 않게 설정 -->
+                                <th:block th:if="${i le cntpg}">
+                                    <li th:class="${(i ne cpg) ? 'page-item' : 'page-item active'}">
+                                    <!--<li th:class="${#strings.endsWith(#request.getRequestURI(), i)} ? 'page-item active' : 'page-item'">-->
+                                        <a th:href="|${pglink}${i}|" class="page-link" th:text="${i}">1</a></li>
+                                </th:block>
+                            </th:block>
+
+                            <li th:class="${(cpg + 1 le cntpg) ? 'page-item' : 'page-item disabled'}"><a th:href="|${pglink}${cpg+1}|" class="page-link">다음</a></li>
+                            <th:block th:if="${cpg lt cntpg}">
+                                <li class="page-item"><a th:href="|${pglink}${cntpg}|" class="page-link">끝</a></li>
+                            </th:block>
+                        </ul>
+                    </nav>
+                </div>
+            </div> <!-- 페이지네이션 -->
         </div>
+
+        <script src="/assets/js/pds.js" charset="utf-8"></script>
     </th:block>
 </html>
