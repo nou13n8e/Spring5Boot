@@ -274,3 +274,16 @@ wrtbdbtn?.addEventListener('click', ()=>{
         alert("작성이 완료되었습니다.")
     }
 });
+
+// 검색 기능
+let findbtn=document.querySelector("#findbtn");
+let findtype=document.querySelector("#findtype");
+let findkey=document.querySelector("#findkey");
+
+findbtn?.addEventListener('click', ()=>{
+    if(findkey.value === '') {
+        alert("검색어를 입력해주세요.");
+    } else {
+        location.href=`/board/find/${findtype.value}/${findkey.value}/1`;
+    }
+});
