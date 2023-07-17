@@ -68,3 +68,11 @@ create table pdsattach (
 
 alter table pds add constraint fkpuid foreign key(userid) references member2(userid);
 alter table pdsattach add constraint fkpno foreign key(pno) references pds(pno);
+
+
+
+
+select * from pds p join pdsattach pa using (pno) where p.pno='8';
+
+create view ppa as select * from pds p join pdsattach pa using (pno);
+select * from ppa where pno='8';
