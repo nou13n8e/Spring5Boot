@@ -4,6 +4,26 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="nou.hello.boot.spring5boot.mybatis.PdsMapper">
+
+    <!-- view result -->
+    <resultMap id="pa" type="PdsAttach">
+        <result column="fname" property="fname" />
+        <result column="ftype" property="ftype" />
+        <result column="fsize" property="fsize" />
+        <result column="fdown" property="fdown" />
+    </resultMap>
+    <resultMap id="ppa" type="Pds">
+        <result column="pno" property="pno" />
+        <result column="title" property="title" />
+        <result column="userid" property="userid" />
+        <result column="regdate" property="regdate" />
+        <result column="thumbs" property="thumbs" />
+        <result column="views" property="views" />
+        <result column="contents" property="contents" />
+        <result column="ipaddr" property="ipaddr" />
+        <collection property="pa" resultMap="pa" />
+    </resultMap>
+
     <insert id="insertPds" parameterType="Pds">
         insert into pds (title, userid, contents, ipaddr)
         values (#{title}, #{userid}, #{contents}, #{ipaddr})
@@ -21,28 +41,30 @@
         values (#{pno}, #{fname}, #{ftype}, #{fsize})
     </insert>
 
+    <select id="selectPds" resultType="Pds">
+        select pno, title, userid, regdate, thumbs, views from pds
+        order by pno desc limit #{stnum}, 25
+    </select>
 
+    <select id="selectOnePds" resultMap="ppa">
+        select * from ppa where pno = #{pno}
+    </select>
 
-<!--    <select id="selectPds" resultType="Pds">-->
-<!--        select bno, title, userid, regdate, thumbs, views from Pds2-->
-<!--        order by bno desc limit #{stnum}, 25-->
-<!--    </select>-->
+    <select id="countAllPds">
+        select ceil(count(pno) / 25) cntpg from pds
+    </select>
 
-<!--    <select id="selectOnePds" resultType="Pds">-->
-<!--        select * from Pds2 where bno = #{bno}-->
-<!--    </select>-->
+    <update id="viewsUp">
+        update pds set views=views+1 where pno=${pno}
+    </update>
 
 <!--    <delete id="deleteOnePds">-->
 <!--        delete from Pds2 where bno=#{bno}-->
 <!--    </delete>-->
 
-<!--    <update id="viewsUp">-->
-<!--        update Pds2 set views=views+1 where bno=${bno}-->
-<!--    </update>-->
 
-<!--    <select id="countAllPds">-->
-<!--        select ceil(count(*) / 25) cntpg from Pds2-->
-<!--    </select>-->
+
+
 
 <!--    &lt;!&ndash; 동적 쿼리로 검색 기능 구현 1 (컬럼명이나 테이블명은 #{}가 아닌 ${}사용) &ndash;&gt;-->
 <!--    <select id="findPds" parameterType="map" resultType="Pds">-->

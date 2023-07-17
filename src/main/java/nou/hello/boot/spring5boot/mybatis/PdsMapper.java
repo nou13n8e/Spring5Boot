@@ -10,17 +10,17 @@ import java.util.Map;
 @Mapper
 public interface PdsMapper {
     int insertPds(Pds p);
-
     int lastPdsPno();
-
     int insertPdsAttach(PdsAttach pa);
+    List<Pds> selectPds(int stnum);
+    Pds selectOnePds(String pno);
+    int countAllPds();
+    int viewsUp(String pno);
 
 
-//    List<Pds> selectPds(int stnum);
-//    Pds selectOnePds(String bno);
 //    int deleteOnePds(String bno);
-//    int viewsUp(String bno);
-//    int countAllPds();
+
+
 //    List<Pds> findPds(Map<String, Object> params);
 //    int countFindPds(Map<String, Object> params);
 }
