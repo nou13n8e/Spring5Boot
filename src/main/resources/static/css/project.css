@@ -11,6 +11,16 @@
     border-bottom: silver;
 }
 
+.cmtbg {
+    background-color: yellow;
+    padding: 5px;
+}
+
+.rpybg {
+    background-color: lime;
+    padding: 5px;
+}
+
 .thbg {
     background-color: #dff0d8;
 }
