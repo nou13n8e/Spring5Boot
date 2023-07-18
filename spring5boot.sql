@@ -76,3 +76,25 @@ select * from pds p join pdsattach pa using (pno) where p.pno='8';
 
 create view ppa as select * from pds p join pdsattach pa using (pno);
 select * from ppa where pno='8';
+
+-- comments
+create table pdscomments (
+    cno             int             auto_increment,
+    comments        mediumtext      not null,
+    userid          varchar(18)     not null,
+    regdate         datetime        default current_timestamp,
+    pno             int             not null,
+    ref             int             not null,
+    primary key (cno)
+);
+alter table pdscomments add constraint fkrefcno foreign key (ref) references pdscomments (cno);
+alter table pdscomments add constraint fkpnopno foreign key (pno) references pds(pno);
+
+
+insert into pdscomments (userid, comments, ref, pno) values ('abc123', '비가 와요1', '1', '8');
+insert into pdscomments (userid, comments, ref, pno) values ('abc123', '비가 와요2', '2', '8');
+insert into pdscomments (userid, comments, ref, pno) values ('abc123', '비가 와요3', '3', '8');
+insert into pdscomments (userid, comments, ref, pno) values ('abc123', '대댓글은요?4', '2', '8');
+insert into pdscomments (userid, comments, ref, pno) values ('abc123', '비가 와요4', '5', '8');
+
+select * from pdscomments where pno=8 order by ref;
