@@ -8,6 +8,10 @@ import nou.hello.boot.spring5boot.service.PdsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,6 +73,19 @@ public class PdsController {
 
         return viewPage;
     }
+    @GetMapping("/down/{pno}")
+    public ResponseEntity<Resource> down(@PathVariable String pno) {
+        logger.info("pds down 호출!");
 
+        // 1 업로드한 파일에 대한 파일명 알아내기
+        String fname=psrv.readOnePdsAttach(pno);
+
+        // 2 알아낸 파일명을 이용해 헤더와 리소스 객체 생성
+        Map<String, Object> obj=psrv.getHeaderResource(fname);
+
+        return ResponseEntity.ok()
+                .headers((HttpHeaders)obj.get("header"))
+                .body((UrlResource)obj.get("resource"));
+    }
 
 }
