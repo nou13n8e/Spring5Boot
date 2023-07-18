@@ -17,6 +17,8 @@ public interface PdsMapper {
     int countAllPds();
     int viewsUp(String pno);
 
+    PdsAttach selectOnePdsAttach(String pno);
+
 
 //    int deleteOnePds(String bno);
 

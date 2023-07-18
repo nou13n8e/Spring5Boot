@@ -12,6 +12,7 @@
         <result column="fsize" property="fsize" />
         <result column="fdown" property="fdown" />
     </resultMap>
+
     <resultMap id="ppa" type="Pds">
         <result column="pno" property="pno" />
         <result column="title" property="title" />
@@ -48,6 +49,10 @@
 
     <select id="selectOnePds" resultMap="ppa">
         select * from ppa where pno = #{pno}
+    </select>
+
+    <select id="selectOnePdsAttach" resultType="PdsAttach">
+        select * from pdsattach where pno = #{pno}
     </select>
 
     <select id="countAllPds">
