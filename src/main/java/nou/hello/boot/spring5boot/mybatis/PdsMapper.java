@@ -2,6 +2,7 @@ package nou.hello.boot.spring5boot.mybatis;
 
 import nou.hello.boot.spring5boot.model.Pds;
 import nou.hello.boot.spring5boot.model.PdsAttach;
+import nou.hello.boot.spring5boot.model.PdsComment;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public interface PdsMapper {
     Pds selectOnePds(String pno);
     int countAllPds();
     int viewsUp(String pno);
-
     PdsAttach selectOnePdsAttach(String pno);
+    int insertPdsComment(PdsComment pc);
+    List<PdsComment> selectPdsComment(String pno);
 
 
 //    int deleteOnePds(String bno);

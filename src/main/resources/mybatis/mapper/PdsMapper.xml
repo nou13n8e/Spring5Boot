@@ -63,6 +63,22 @@
         update pds set views=views+1 where pno=${pno}
     </update>
 
+
+
+    <insert id="insertPdsComment" parameterType="PdsComment">
+        insert into pdscomments (userid, comments, ref, pno)
+        values (#{userid}, #{comments}, #{ref}, #{pno})
+    </insert>
+
+    <select id="selectPdsComment" resultType="PdsComment">
+        select * from pdscomments where pno = #{pno} order by ref
+    </select>
+
+
+
+
+
+
 <!--    <delete id="deleteOnePds">-->
 <!--        delete from Pds2 where bno=#{bno}-->
 <!--    </delete>-->
