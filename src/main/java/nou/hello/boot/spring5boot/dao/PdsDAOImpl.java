@@ -2,6 +2,7 @@ package nou.hello.boot.spring5boot.dao;
 
 import nou.hello.boot.spring5boot.model.Pds;
 import nou.hello.boot.spring5boot.model.PdsAttach;
+import nou.hello.boot.spring5boot.model.PdsComment;
 import nou.hello.boot.spring5boot.mybatis.PdsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,30 +25,41 @@ public class PdsDAOImpl implements PdsDAO {
         }
         return cnt;
     }
-
     @Override
     public int insertPdsAttach(PdsAttach pa) {
         return pdsMapper.insertPdsAttach(pa);
     }
-
     @Override
     public List<Pds> selectPds(int stnum) {
         return pdsMapper.selectPds(stnum);
     }
-
     @Override
     public int countAllPds() {
         return pdsMapper.countAllPds();
     }
-
     @Override
     public Pds selectOnePds(String pno) {
         pdsMapper.viewsUp(pno);
         return pdsMapper.selectOnePds(pno);
     }
-
     @Override
     public PdsAttach selectOnePdsAttach(String pno) {
         return pdsMapper.selectOnePdsAttach(pno);
+    }
+
+    @Override
+    public int insertPdsComment(PdsComment pc) {
+
+        return pdsMapper.insertPdsComment(pc);
+    }
+
+    @Override
+    public List<PdsComment> selectPdsComment(String pno) {
+        return pdsMapper.selectPdsComment(pno);
+    }
+
+    @Override
+    public int insertPdsReply(PdsComment pc) {
+        return pdsMapper.insertPdsReply(pc);
     }
 }
