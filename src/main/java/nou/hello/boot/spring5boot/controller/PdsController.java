@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import nou.hello.boot.spring5boot.model.Board;
 import nou.hello.boot.spring5boot.model.Pds;
 import nou.hello.boot.spring5boot.model.PdsAttach;
+import nou.hello.boot.spring5boot.model.PdsComment;
 import nou.hello.boot.spring5boot.service.PdsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,7 +48,8 @@ public class PdsController {
     @GetMapping("/view/{pno}")
     public String view(Model m, @PathVariable String pno) {
         logger.info("pds view 호출!");
-        m.addAttribute("view", psrv.readOnePds(pno));
+        m.addAttribute("view", psrv.readOnePds(pno)); //본문
+        m.addAttribute("pcs", psrv.readPdsComment(pno)); //댓글+대댓글
         return "/pds/view";
     }
 
@@ -88,4 +90,29 @@ public class PdsController {
                 .body((UrlResource)obj.get("resource"));
     }
 
+    @PostMapping("/cmt/write")
+    public String cmtwrtok(PdsComment pc) {
+        logger.info("pds cmt wrt 호출!");
+        String viewPage = "redirect:/pds/fail";
+
+        // 1 댓글을 먼저 DB에 저장
+        if(psrv.newPdsComment(pc)){
+            // 작성한 댓글을 확인하기 위해 바로 본문 출력
+            viewPage = "redirect:/pds/view/" + pc.getPno();
+        }
+        return viewPage;
+    }
+
+    @PostMapping("/reply/write")
+    public String rpywrtok(PdsComment pc) {
+        logger.info("pds rpy wrt 호출!");
+        String viewPage = "redirect:/pds/fail";
+
+        // 1 대댓글을 먼저 DB에 저장
+        if(psrv.newPdsReply(pc)){
+            // 작성한 대댓글을 확인하기 위해 바로 본문 출력
+            viewPage = "redirect:/pds/view/" + pc.getPno();
+        }
+        return viewPage;
+    }
 }
