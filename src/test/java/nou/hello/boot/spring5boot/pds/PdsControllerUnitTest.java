@@ -53,4 +53,12 @@ public class PdsControllerUnitTest {
                 .andExpect(status().is(200))
                 .andDo(print());
     }
+
+    @Test
+    @DisplayName("PdsController view Test")
+    void view() throws Exception {
+        mvc.perform(get("/pds/view/8"))
+                .andExpect(status().is(200))
+                .andDo(print());
+    }
 }
