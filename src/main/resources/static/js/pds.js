@@ -55,3 +55,44 @@ findbtn?.addEventListener('click', ()=>{
         location.href=`/pds/find/${findtype.value}/${findkey.value}/1`;
     }
 });
+
+// 댓글
+let cmtfrm=document.querySelector("#cmtfrm");
+let newcmtbtn=document.querySelector("#newcmtbtn");
+
+newcmtbtn?.addEventListener('click', ()=>{
+    if(cmtfrm.userid.value === '') {
+        alert("로그인 해주세요.");
+    } else if(cmtfrm.pno.value === '') {
+        alert("로그인 해주세요.");
+    } else if(cmtfrm.comments.value === '') {
+        alert("내용을 작성해주세요.");
+    } else {
+        cmtfrm.method = "post";
+        cmtfrm.action = "/pds/cmt/write";
+        cmtfrm.submit();
+        alert("작성이 완료되었습니다.");
+    }
+});
+
+// 대댓글
+let modal=null;
+const refno=document.querySelector("#ref");
+const showReply = (ref) => {
+    refno.value = ref; // 대댓글을 작성할 댓글의 번호를 알아내기
+    modal = new bootstrap.Modal(replyModal, {});
+    modal.show();
+};
+
+const replybtn=document.querySelector("#replybtn");
+const frm=document.querySelector("#replyfrm");
+replybtn?.addEventListener('click', ()=>{
+    if(frm.comments.value === '') alert("내용을 작성해주세요.");
+    if(frm.ref.value === '') alert("댓글이 없습니다.");
+    if(frm.pno.value === '') alert("본문이 없습니다.");
+    else {
+        frm.method="post";
+        frm.action="/pds/reply/write";
+        frm.submit();
+    }
+});
