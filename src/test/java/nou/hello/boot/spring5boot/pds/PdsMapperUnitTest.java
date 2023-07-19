@@ -3,6 +3,7 @@ package nou.hello.boot.spring5boot.pds;
 import nou.hello.boot.spring5boot.model.Board;
 import nou.hello.boot.spring5boot.model.Pds;
 import nou.hello.boot.spring5boot.model.PdsAttach;
+import nou.hello.boot.spring5boot.model.PdsComment;
 import nou.hello.boot.spring5boot.mybatis.PdsMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,27 @@ public class PdsMapperUnitTest {
     void selectOnePdsAttach() {
         String pno="8";
         PdsAttach result = pdsMapper.selectOnePdsAttach(pno);
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("PdsMapper selectPdsComments Test")
+    void selectPdsComments() {
+        String pno="8";
+        List<PdsComment> results = pdsMapper.selectPdsComment(pno);
+        assertNotNull(results);
+    }
+
+    @Test
+    @DisplayName("PdsMapper last-insert-id Test")
+    @Transactional
+    void newcomment() {
+        PdsComment pc=new PdsComment();
+        pc.setUserid("abc123");
+        pc.setComments("테스트");
+        pc.setPno("8");
+
+        int result=pdsMapper.insertPdsComment(pc);
         assertNotNull(result);
     }
 }
